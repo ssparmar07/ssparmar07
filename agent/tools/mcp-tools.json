@@ -1,0 +1,168 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MCP Tools Interface",
+  "description": "Available MCP tools for fetching Amazon Seller analytics data",
+  "tools": [
+    {
+      "name": "get_sales_data",
+      "description": "Fetch sales data for a specified date range",
+      "parameters": {
+        "type": "object",
+        "required": ["date_range"],
+        "properties": {
+          "date_range": {
+            "type": "string",
+            "enum": ["7_days", "30_days", "90_days", "custom"],
+            "description": "Predefined date range or 'custom' for custom dates"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Start date for custom range (ISO 8601 format)"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "description": "End date for custom range (ISO 8601 format)"
+          }
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "total_sales": { "type": "number" },
+          "total_orders": { "type": "number" },
+          "previous_period_sales": { "type": "number" },
+          "previous_period_orders": { "type": "number" }
+        }
+      }
+    },
+    {
+      "name": "get_buy_box_data",
+      "description": "Fetch buy box performance data for a specific SKU",
+      "parameters": {
+        "type": "object",
+        "required": ["sku"],
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "Product SKU identifier"
+          },
+          "date_range": {
+            "type": "string",
+            "enum": ["7_days", "30_days", "90_days"],
+            "default": "30_days"
+          }
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "sku": { "type": "string" },
+          "win_rate": { "type": "number" },
+          "competitor_name": { "type": "string" },
+          "your_price": { "type": "number" },
+          "competitor_price": { "type": "number" }
+        }
+      }
+    },
+    {
+      "name": "get_product_profitability",
+      "description": "Fetch profitability data for a specific SKU",
+      "parameters": {
+        "type": "object",
+        "required": ["sku"],
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "Product SKU identifier"
+          },
+          "date_range": {
+            "type": "string",
+            "enum": ["7_days", "30_days", "90_days"],
+            "default": "30_days"
+          }
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "sku": { "type": "string" },
+          "revenue": { "type": "number" },
+          "cogs": { "type": "number" },
+          "fees": { "type": "number" },
+          "shipping": { "type": "number" },
+          "advertising": { "type": "number" }
+        }
+      }
+    },
+    {
+      "name": "get_review_sentiment",
+      "description": "Fetch review sentiment analysis for a specific SKU",
+      "parameters": {
+        "type": "object",
+        "required": ["sku"],
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "Product SKU identifier"
+          },
+          "date_range": {
+            "type": "string",
+            "enum": ["7_days", "30_days", "90_days", "all"],
+            "default": "all"
+          }
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "sku": { "type": "string" },
+          "positive_count": { "type": "number" },
+          "neutral_count": { "type": "number" },
+          "negative_count": { "type": "number" },
+          "keywords": { 
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "keyword": { "type": "string" },
+                "frequency": { "type": "number" }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "get_all_skus",
+      "description": "Fetch all available SKUs for the seller account",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "active_only": {
+            "type": "boolean",
+            "default": true,
+            "description": "Only return active SKUs"
+          }
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "skus": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sku": { "type": "string" },
+                "name": { "type": "string" },
+                "status": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

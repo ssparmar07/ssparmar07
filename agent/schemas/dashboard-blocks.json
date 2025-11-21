@@ -1,0 +1,153 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sydon Dashboard Blocks Schema",
+  "description": "Predefined dashboard block schemas for Sydon Amazon Seller AI Analytics",
+  "definitions": {
+    "sales_overview": {
+      "type": "object",
+      "required": ["block", "data"],
+      "properties": {
+        "block": {
+          "type": "string",
+          "const": "sales_overview"
+        },
+        "data": {
+          "type": "object",
+          "required": ["total_sales", "total_orders", "avg_order_value", "trend", "trend_percentage"],
+          "properties": {
+            "total_sales": {
+              "type": "number",
+              "description": "Total sales amount in currency"
+            },
+            "total_orders": {
+              "type": "number",
+              "description": "Total number of orders"
+            },
+            "avg_order_value": {
+              "type": "number",
+              "description": "Average order value (total_sales / total_orders)"
+            },
+            "trend": {
+              "type": "string",
+              "enum": ["up", "down", "neutral"],
+              "description": "Trend direction compared to previous period"
+            },
+            "trend_percentage": {
+              "type": "number",
+              "description": "Percentage change compared to previous period"
+            }
+          }
+        }
+      }
+    },
+    "buy_box": {
+      "type": "object",
+      "required": ["block", "data"],
+      "properties": {
+        "block": {
+          "type": "string",
+          "const": "buy_box"
+        },
+        "data": {
+          "type": "object",
+          "required": ["win_rate", "lost_to", "price_difference", "sku"],
+          "properties": {
+            "win_rate": {
+              "type": "number",
+              "description": "Buy box win rate percentage (0-100)"
+            },
+            "lost_to": {
+              "type": "string",
+              "description": "Competitor name or identifier when buy box is lost"
+            },
+            "price_difference": {
+              "type": "number",
+              "description": "Price difference (your_price - competitor_price). Negative if you're cheaper, positive if you're more expensive"
+            },
+            "sku": {
+              "type": "string",
+              "description": "Product SKU identifier"
+            }
+          }
+        }
+      }
+    },
+    "profitability": {
+      "type": "object",
+      "required": ["block", "data"],
+      "properties": {
+        "block": {
+          "type": "string",
+          "const": "profitability"
+        },
+        "data": {
+          "type": "object",
+          "required": ["sku", "revenue", "cost", "profit", "margin"],
+          "properties": {
+            "sku": {
+              "type": "string",
+              "description": "Product SKU identifier"
+            },
+            "revenue": {
+              "type": "number",
+              "description": "Total revenue for the product"
+            },
+            "cost": {
+              "type": "number",
+              "description": "Total cost for the product"
+            },
+            "profit": {
+              "type": "number",
+              "description": "Profit (revenue - cost)"
+            },
+            "margin": {
+              "type": "number",
+              "description": "Profit margin percentage ((profit / revenue) * 100)"
+            }
+          }
+        }
+      }
+    },
+    "reviews": {
+      "type": "object",
+      "required": ["block", "data"],
+      "properties": {
+        "block": {
+          "type": "string",
+          "const": "reviews"
+        },
+        "data": {
+          "type": "object",
+          "required": ["positive", "neutral", "negative", "top_keywords"],
+          "properties": {
+            "positive": {
+              "type": "number",
+              "description": "Number or percentage of positive reviews"
+            },
+            "neutral": {
+              "type": "number",
+              "description": "Number or percentage of neutral reviews"
+            },
+            "negative": {
+              "type": "number",
+              "description": "Number or percentage of negative reviews"
+            },
+            "top_keywords": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Most frequently mentioned keywords in reviews"
+            }
+          }
+        }
+      }
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/definitions/sales_overview" },
+    { "$ref": "#/definitions/buy_box" },
+    { "$ref": "#/definitions/profitability" },
+    { "$ref": "#/definitions/reviews" }
+  ]
+}
