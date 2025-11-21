@@ -122,7 +122,7 @@ function transformToSalesOverview(mcpData) {
 }
 
 function transformToBuyBox(mcpData) {
-  const priceDiff = mcpData.competitor_price - mcpData.your_price;
+  const priceDiff = mcpData.your_price - mcpData.competitor_price;
   
   return {
     block: 'buy_box',

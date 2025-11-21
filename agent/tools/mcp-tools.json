@@ -12,7 +12,7 @@
         "properties": {
           "date_range": {
             "type": "string",
-            "enum": ["7_days", "30_days", "90_days", "last_7_days", "last_30_days", "last_90_days", "custom"],
+            "enum": ["7_days", "30_days", "90_days", "custom"],
             "description": "Predefined date range or 'custom' for custom dates"
           },
           "start_date": {

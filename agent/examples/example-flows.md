@@ -92,14 +92,14 @@ What's my buy box performance for SKU-ABC-123?
   "data": {
     "win_rate": 78.5,
     "lost_to": "Competitor XYZ",
-    "price_difference": -2.00,
+    "price_difference": 2.00,
     "sku": "SKU-ABC-123"
   }
 }
 ```
 
 **Calculations**:
-- `price_difference = your_price - competitor_price = 29.99 - 27.99 = 2.00` (shown as -2.00 to indicate you're more expensive)
+- `price_difference = your_price - competitor_price = 29.99 - 27.99 = 2.00` (positive means you're more expensive)
 
 ---
 

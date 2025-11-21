@@ -103,7 +103,7 @@ margin = (profit / revenue) * 100
 ```
 price_difference = your_price - competitor_price
 ```
-(Negative value means you're more expensive)
+(Negative value means you're cheaper; positive means you're more expensive)
 
 ---
 

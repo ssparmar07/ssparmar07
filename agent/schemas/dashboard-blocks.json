@@ -62,7 +62,7 @@
             },
             "price_difference": {
               "type": "number",
-              "description": "Price difference vs competitor (negative if more expensive)"
+              "description": "Price difference (your_price - competitor_price). Negative if you're cheaper, positive if you're more expensive"
             },
             "sku": {
               "type": "string",

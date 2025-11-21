@@ -145,14 +145,14 @@
   "data": {
     "win_rate": 85.5,
     "lost_to": "Amazon Warehouse",
-    "price_difference": -2.00,
+    "price_difference": 2.00,
     "sku": "SKU-ABC-123"
   }
 }
 ```
 
 **Validation**:
-- ✓ price_difference calculated correctly (49.99 - 47.99 = 2.00, shown as -2.00)
+- ✓ price_difference = your_price - competitor_price = 49.99 - 47.99 = 2.00 (positive means you're more expensive)
 - ✓ competitor_name mapped to lost_to
 
 ---
@@ -178,14 +178,14 @@
   "data": {
     "win_rate": 95.0,
     "lost_to": "Best Seller Co",
-    "price_difference": 3.00,
+    "price_difference": -3.00,
     "sku": "SKU-XYZ-789"
   }
 }
 ```
 
 **Validation**:
-- ✓ price_difference is positive (you're cheaper)
+- ✓ price_difference = your_price - competitor_price = 29.99 - 32.99 = -3.00 (negative means you're cheaper)
 - ✓ high win_rate reflects competitive pricing
 
 ---

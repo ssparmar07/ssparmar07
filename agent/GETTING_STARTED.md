@@ -41,7 +41,7 @@ All agent responses fit into one of these 4 blocks:
   "data": {
     "win_rate": 78.5,
     "lost_to": "Competitor XYZ",
-    "price_difference": -2.00,
+    "price_difference": 2.00,
     "sku": "SKU-ABC-123"
   }
 }
